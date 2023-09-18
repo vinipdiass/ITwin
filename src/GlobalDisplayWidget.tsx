@@ -81,15 +81,6 @@ const GlobalDisplayWidget = () => {
     </span>
   );
 
-  const _travelToGuaiba = async () => {
-    setDestination("Orla do Guaíba");
-    _travelToDestination()
-      .catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error(error);
-      });
-  };
-
   return (
     <div className="sample-container">
       <div className="sample-options">
@@ -116,9 +107,10 @@ const GlobalDisplayWidget = () => {
           />
         </div>
         <div className="travel-destination">
-          <Label htmlFor="destination">{infoLabel("Destination", "Type a place name and press enter to travel there")}</Label>
-          <Input id="destination" size="small" className="travel-destination-input" onChange={(e) => setDestination("Orla do Guaíba")} onKeyPress={_onKeyPress} />
-          <Button size="small" className="travel-destination-btn" styleType="cta" onClick={_travelToDestination} title={"Travel to the specified destination"}>Travel</Button>
+          <Button size="small" className="travel-destination-btn" styleType="cta"
+          onClick={() => {setDestination("Orla do Guaíba");
+          _travelToDestination();
+      }} title={"Viajar direto para a orla do Guaíba"}>Viajar para a Orla do Guaíba</Button>
         </div>
       </div>
       <Alert type="informational" className="instructions">
