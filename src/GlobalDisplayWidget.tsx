@@ -22,7 +22,7 @@ import "./GlobalDisplay.scss";
 const GlobalDisplayWidget = () => {
   const viewport = useActiveViewport();
   /** Place name to which to travel. */
-  const [destination, setDestination] = useState<string>("");
+  const [destination, setDestination] = useState<string>("Orla do Guaíba");
   /** True for 3d terrain, false for a flat map. */
   const [terrain, setTerrain] = useState<boolean>(true);
   /** Display map labels with the map imagery. */
@@ -113,10 +113,6 @@ const GlobalDisplayWidget = () => {
       }} title={"Viajar direto para a orla do Guaíba"}>Viajar para a Orla do Guaíba</Button>
         </div>
       </div>
-      <Alert type="informational" className="instructions">
-        Using the Global Display Controls Widget, type in the name of a location (e.g., "Mount Everest", "White House", your own address, etc),
-        then click the button to travel there.
-      </Alert>
     </div>
   );
 
