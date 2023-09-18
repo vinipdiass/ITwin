@@ -30,7 +30,7 @@ const GlobalDisplayWidget = () => {
   /** Display 3d building meshes from Open Street Map Buildings. */
   const [buildings, setBuildings] = useState<boolean>(true);
   /** If buildings are displayed, also display their edges. */
-  const [buildingEdges, setBuildingEdges] = useState<boolean>(true);
+  const [buildingEdges, setBuildingEdges] = useState<boolean>(false);
 
   useEffect(() => {
     if (viewport) {
