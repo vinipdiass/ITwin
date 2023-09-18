@@ -38,7 +38,7 @@ export class GlobalDisplayApi {
     const viewDefinitionProps: SpatialViewDefinitionProps = {
       angles: { pitch: 36.51434, roll: -152.05985, yaw: -7.09931 },
       camera: {
-        eye: [-275742.30015, -6029894.49473, -4310387.86741],
+        eye: [-275742.30015, -6029894.49473, -2155014.86741],
         focusDist: 1178.36256,
         lens: 45.95389,
       },
@@ -53,7 +53,7 @@ export class GlobalDisplayApi {
       isPrivate: false,
       model: "0x28",
       modelSelectorId: "0x823",
-      origin: [-276795.28703, -6029103.67946, -4310029.41901],
+      origin: [-276795.28703, -6029103.67946, -2155014.41901],
     };
 
     const displayStyleProps: DisplayStyle3dProps = {
