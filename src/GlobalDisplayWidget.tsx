@@ -24,11 +24,11 @@ const GlobalDisplayWidget = () => {
   /** Place name to which to travel. */
   const [destination, setDestination] = useState<string>("Orla do Guaíba");
   /** True for 3d terrain, false for a flat map. */
-  const [terrain, setTerrain] = useState<boolean>(true);
+  const [terrain, setTerrain] = useState<boolean>(false);
   /** Display map labels with the map imagery. */
   const [mapLabels, setMapLabels] = useState<boolean>(false);
   /** Display 3d building meshes from Open Street Map Buildings. */
-  const [buildings, setBuildings] = useState<boolean>(true);
+  const [buildings, setBuildings] = useState<boolean>(false);
   /** If buildings are displayed, also display their edges. */
   const [buildingEdges, setBuildingEdges] = useState<boolean>(false);
 
@@ -56,7 +56,6 @@ const GlobalDisplayWidget = () => {
   const _travelToDestination = async () => {
     if (!viewport)
       return;
-
     const locationFound = await GlobalDisplayApi.travelTo(viewport, destination);
     if (!locationFound) {
       const message = `Sorry, "${destination}" isn't recognized as a location.`;
@@ -111,6 +110,13 @@ const GlobalDisplayWidget = () => {
           onClick={() => {setDestination("Orla do Guaíba");
           _travelToDestination();
       }} title={"Travel straight to Orla do Guaíba"}>Travel to Orla do Guaíba</Button>
+        </div>
+        
+        <div className="travel-destination">
+          <Button size="small" className="travel-destination-btn" styleType="cta"
+          onClick={() => {setDestination("Orla do Guaíba");
+          _travelToDestination();
+      }} title={"Botão 2"}>Botão 2</Button>
         </div>
       </div>
     </div>
