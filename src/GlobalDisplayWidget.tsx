@@ -136,17 +136,11 @@ const updateMachines = () => {
       <div className="sample-options">
         <div className="sample-options-toggles">
         </div>
-        <div className="travel-destination">
-          <Button size="small" className="travel-destination-btn" styleType="cta"
-          onClick={() => {setDestination("Orla do Guaíba");
-          _travelToDestination();
-      }} title={"Travel straight to Orla do Guaíba"}>Travel to Orla do Guaíba</Button>
-        </div>
   
     
     <div className="travel-destination">
       <Button
-        size="small"
+        size="large"
         className="travel-destination-btn"
         styleType="cta"
         onClick={() => {
