@@ -22,7 +22,7 @@ const viewportOptions: ViewerViewportControlOptions = {
       viewport.viewFlags = viewport.view.viewFlags.with("grid", false);
 
       // We're not interested in seeing the contents of the iModel, only the global data.
-
+      
     });
     return GlobalDisplayApi.getInitialView(iModelConnection);
   },
