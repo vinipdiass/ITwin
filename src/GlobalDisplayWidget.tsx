@@ -32,6 +32,14 @@ const GlobalDisplayWidget = () => {
   /** If buildings are displayed, also display their edges. */
   const [buildingEdges, setBuildingEdges] = useState<boolean>(false);
 
+  interface ModalProps {
+    isOpen: boolean;
+    onClose: () => void;
+  }
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+
   useEffect(() => {
     if (viewport) {
       viewport.changeBackgroundMapProps({
@@ -73,6 +81,49 @@ const GlobalDisplayWidget = () => {
     }
   };
 
+  const initialMachines = [
+    { numeroDePessoas: 0, peso: 0 },
+    { numeroDePessoas: 0, peso: 0 },
+    { numeroDePessoas: 0, peso: 0 },
+    { numeroDePessoas: 0, peso: 0 },
+    { numeroDePessoas: 0, peso: 0 }
+  ];
+
+const [machines, setMachines] = useState(initialMachines);
+
+const randomizePeople = () => Math.floor(Math.random() * 300) + 50;
+
+const calculateWeight = (numOfPeople: number) => numOfPeople * 0.15;
+
+
+const updateMachines = () => {
+  const updatedMachines = machines.map(() => {
+    const numeroDePessoas = randomizePeople();
+    const peso = calculateWeight(numeroDePessoas);
+    return { numeroDePessoas, peso };
+  });
+  setMachines(updatedMachines);
+};
+
+  const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
+    if (!isOpen) return null;
+  
+    return (
+      <div className="modal-overlay">
+        <div className="modal-content">
+          <button onClick={onClose}>Close</button>
+          <p> {machines.map((machine, index) => (
+  <div key={index}>
+    <h3>Machine {index + 1}</h3>
+    <p>Number of discards: {`${machine.numeroDePessoas}`}</p>
+    <p>Current weight: {`${machine.peso.toFixed(2)} lb | Maximum: 100 lb`}</p>
+  </div>
+))}</p>
+        </div>
+      </div>
+    );
+  };
+  
   const infoLabel = (label: string, tooltip: string) => (
     <span className="toggle-label">
       <Text>{label}</Text>
@@ -84,26 +135,6 @@ const GlobalDisplayWidget = () => {
     <div className="sample-container">
       <div className="sample-options">
         <div className="sample-options-toggles">
-          <ToggleSwitch
-            label={infoLabel("Terrain", "Display 3d terrain from Cesium World Terrain Service")}
-            checked={terrain}
-            onChange={() => setTerrain(!terrain)}
-          />
-          <ToggleSwitch
-            label={infoLabel("Map Labels", "Include labels in the Bing map imagery")}
-            checked={mapLabels}
-            onChange={() => setMapLabels(!mapLabels)}
-          />
-          <ToggleSwitch
-            label={infoLabel("Buildings", "Display building meshes from Open Street Map")}
-            checked={buildings}
-            onChange={() => setBuildings(!buildings)}
-          />
-          <ToggleSwitch
-            label={infoLabel("Building Edges", "Display the edges of the building meshes")}
-            checked={buildingEdges}
-            onChange={() => setBuildingEdges(!buildingEdges)}
-          />
         </div>
         <div className="travel-destination">
           <Button size="small" className="travel-destination-btn" styleType="cta"
@@ -111,15 +142,27 @@ const GlobalDisplayWidget = () => {
           _travelToDestination();
       }} title={"Travel straight to Orla do Guaíba"}>Travel to Orla do Guaíba</Button>
         </div>
-        
-        <div className="travel-destination">
-          <Button size="small" className="travel-destination-btn" styleType="cta"
-          onClick={() => {setDestination("Orla do Guaíba");
-          _travelToDestination();
-      }} title={"Botão 2"}>Botão 2</Button>
-        </div>
-      </div>
+  
+    
+    <div className="travel-destination">
+      <Button
+        size="small"
+        className="travel-destination-btn"
+        styleType="cta"
+        onClick={() => {
+          setIsModalOpen(true);
+          updateMachines();
+      }}
+        title={"Administrate machines"}
+      >
+        Administrate machines
+      </Button>
     </div>
+
+    <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+  </div>
+      </div>
+    
   );
 
 };
