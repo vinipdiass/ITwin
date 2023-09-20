@@ -110,7 +110,7 @@ const GlobalDisplayWidget = () => {
           <Button size="small" className="travel-destination-btn" styleType="cta"
           onClick={() => {setDestination("Orla do Guaíba");
           _travelToDestination();
-      }} title={"Viajar direto para a orla do Guaíba"}>Viajar para a Orla do Guaíba</Button>
+      }} title={"Travel straight to Orla do Guaíba"}>Travel to Orla do Guaíba</Button>
         </div>
       </div>
     </div>
