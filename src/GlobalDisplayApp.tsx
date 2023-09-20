@@ -22,7 +22,8 @@ const viewportOptions: ViewerViewportControlOptions = {
       viewport.viewFlags = viewport.view.viewFlags.with("grid", false);
 
       // We're not interested in seeing the contents of the iModel, only the global data.
-      
+      //if (viewport.view.isSpatialView())
+      // viewport.view.modelSelector.models.clear();
     });
     return GlobalDisplayApi.getInitialView(iModelConnection);
   },
@@ -41,7 +42,6 @@ const GlobalDisplayApp = () => {
     iTwinId={iTwinId ?? ""}
     iModelId={iModelId ?? ""}
     authClient={authClient}
-    viewportOptions={viewportOptions}
     defaultUiConfig={
       {
         hideStatusBar: true,
